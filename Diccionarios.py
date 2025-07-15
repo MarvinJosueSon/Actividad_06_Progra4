@@ -1,3 +1,5 @@
+from ipaddress import summarize_address_range
+
 productos = {}
 def Ingreso():
     cantidad=int(input("Ingrese cuantos productos quiere agregar: "))
@@ -40,6 +42,7 @@ def verProductos():
 
     match opcionAux:
         case "1":
+            suma=0
             print("== CATEGORÍA: HOMBRES ==")
             for clave, producto in productos.items():
                 if producto["categoria"] == "hombre":
@@ -48,9 +51,13 @@ def verProductos():
                     print(f"Talla: {producto['talla']}")
                     print(f"Precio: {producto['precio']}")
                     print(f"Stock: {producto['stock']}")
+                    suma = suma + (producto["precio"] * producto["stock"])
+                    print(f"Valor total de inventario: {suma}")
                     print("----------")
 
+
         case "2":
+            suma=0
             print("== CATEGORÍA: MUJERES ==")
             for clave, producto in productos.items():
                 if producto["categoria"] == "mujer":
@@ -59,9 +66,12 @@ def verProductos():
                     print(f"Talla: {producto['talla']}")
                     print(f"Precio: {producto['precio']}")
                     print(f"Stock: {producto['stock']}")
+                    suma = suma + (producto["precio"] * producto["stock"])
+                    print(f"Valor total de inventario: {suma}")
                     print("----------")
 
         case "3":
+            suma=0
             print("== CATEGORÍA: NIÑOS ==")
             for clave, producto in productos.items():
                 if producto["categoria"] == "niños":
@@ -70,9 +80,12 @@ def verProductos():
                     print(f"Talla: {producto['talla']}")
                     print(f"Precio: {producto['precio']}")
                     print(f"Stock: {producto['stock']}")
+                    suma = suma + (producto["precio"] * producto["stock"])
+                    print(f"Valor total de inventario: {suma}")
                     print("----------")
 
         case "4":
+            suma=0
             print("== CATEGORÍA: OTROS ==")
             for clave, producto in productos.items():
                 if producto["categoria"] == "otros":
@@ -81,9 +94,12 @@ def verProductos():
                     print(f"Talla: {producto['talla']}")
                     print(f"Precio: {producto['precio']}")
                     print(f"Stock: {producto['stock']}")
+                    suma = suma + (producto["precio"] * producto["stock"])
+                    print(f"Valor total de inventario: {suma}")
                     print("----------")
 
         case "5":
+            suma=0
             print("== TODOS LOS PRODUCTOS ==")
             for clave, producto in productos.items():
                 print(f"Código: {clave}")
@@ -92,12 +108,14 @@ def verProductos():
                 print(f"Talla: {producto['talla']}")
                 print(f"Precio: {producto['precio']}")
                 print(f"Stock: {producto['stock']}")
+                suma = suma + (producto["precio"] * producto["stock"])
+                print(f"Valor total de inventario: {suma}")
                 print("----------")
 
         case _:
             print("Opción no encontrada")
 
-
+def buscarProductos():
 
 
 while True:
@@ -112,6 +130,8 @@ while True:
             Ingreso()
         case "2":
             verProductos()
+        case "3":
+
         case "4":
             print("Saliendo...")
             break
