@@ -5,11 +5,11 @@ def Ingreso():
     while i <= cantidad:
         try:
             auxCodigo = input("Ingrese el codigo del producto: ")
-            if auxCodigo not in productos:
+            if auxCodigo in productos:
                 print("El codigo del producto ya existe")
             else:
                 nombreAux=input("Ingrese el nombre del producto: ")
-                categoriaAux=input("Ingrese el categoria del producto: (hombre, mujer, niños, otros)").lower()
+                categoriaAux=input("Ingrese el categoria del producto: (hombre, mujer, niños, otros: )").lower()
                 tallaAux=input("Ingrese el talla del producto: ")
                 precioAux=float(input("Ingrese el precio del producto: "))
                 stockAux=int(input("Ingrese el stock del producto: "))
@@ -29,20 +29,75 @@ def Ingreso():
             print("")
         except ValueError:
             print("ERROR: El precio debe ser un numero, el stock debe ser un numero entero")
-def verProdcutos():
-    print("==PRODUCTOS INGRESADOS==")
+def verProductos():
+    print("== PRODUCTOS INGRESADOS ==")
     print("1. Hombres")
     print("2. Mujeres")
     print("3. Niños")
     print("4. Otros")
     print("5. Todos")
-    opcionAux=input("Ingrese la opcion: ")
+    opcionAux = input("Ingrese la opción: ")
+
     match opcionAux:
         case "1":
-            for producto in productos:
-                if(producto["categoria"]=="hombre"):
-                    print(producto["nombre"])
-                    print(producto["categoria"])
+            print("== CATEGORÍA: HOMBRES ==")
+            for clave, producto in productos.items():
+                if producto["categoria"] == "hombre":
+                    print(f"Código: {clave}")
+                    print(f"Nombre: {producto['nombre']}")
+                    print(f"Talla: {producto['talla']}")
+                    print(f"Precio: {producto['precio']}")
+                    print(f"Stock: {producto['stock']}")
+                    print("----------")
+
+        case "2":
+            print("== CATEGORÍA: MUJERES ==")
+            for clave, producto in productos.items():
+                if producto["categoria"] == "mujer":
+                    print(f"Código: {clave}")
+                    print(f"Nombre: {producto['nombre']}")
+                    print(f"Talla: {producto['talla']}")
+                    print(f"Precio: {producto['precio']}")
+                    print(f"Stock: {producto['stock']}")
+                    print("----------")
+
+        case "3":
+            print("== CATEGORÍA: NIÑOS ==")
+            for clave, producto in productos.items():
+                if producto["categoria"] == "niños":
+                    print(f"Código: {clave}")
+                    print(f"Nombre: {producto['nombre']}")
+                    print(f"Talla: {producto['talla']}")
+                    print(f"Precio: {producto['precio']}")
+                    print(f"Stock: {producto['stock']}")
+                    print("----------")
+
+        case "4":
+            print("== CATEGORÍA: OTROS ==")
+            for clave, producto in productos.items():
+                if producto["categoria"] == "otros":
+                    print(f"Código: {clave}")
+                    print(f"Nombre: {producto['nombre']}")
+                    print(f"Talla: {producto['talla']}")
+                    print(f"Precio: {producto['precio']}")
+                    print(f"Stock: {producto['stock']}")
+                    print("----------")
+
+        case "5":
+            print("== TODOS LOS PRODUCTOS ==")
+            for clave, producto in productos.items():
+                print(f"Código: {clave}")
+                print(f"Nombre: {producto['nombre']}")
+                print(f"Categoría: {producto['categoria']}")
+                print(f"Talla: {producto['talla']}")
+                print(f"Precio: {producto['precio']}")
+                print(f"Stock: {producto['stock']}")
+                print("----------")
+
+        case _:
+            print("Opción no encontrada")
+
+
 
 
 while True:
@@ -55,6 +110,8 @@ while True:
     match opcion:
         case "1":
             Ingreso()
+        case "2":
+            verProductos()
         case "4":
             print("Saliendo...")
             break
