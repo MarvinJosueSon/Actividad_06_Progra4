@@ -6,17 +6,20 @@ def Ingreso():
     i=1
     while i <= cantidad:
         try:
+            print(f"Ingreso producto #{i+1}")
             auxCodigo = input("Ingrese el codigo del producto: ")
             if auxCodigo in productos:
                 print("El codigo del producto ya existe")
             else:
                 nombreAux=input("Ingrese el nombre del producto: ")
-                categoriaAux=input("Ingrese el categoria del producto: (hombre, mujer, niños, otros: )").lower()
-                tallaAux=input("Ingrese el talla del producto: ")
+
                 precioAux=float(input("Ingrese el precio del producto: "))
                 stockAux=int(input("Ingrese el stock del producto: "))
                 if stockAux>0 and precioAux>0:
+                    categoriaAux = input("Ingrese el categoria del producto: (hombre, mujer, niños, otros): ").lower()
+
                     if categoriaAux == "mujer" or categoriaAux == "hombre" or categoriaAux == "niños" or categoriaAux=="otros":
+                        tallaAux = input("Ingrese el talla del producto: ")
                         i=i+1
                         productos[auxCodigo] = {
                             "nombre": nombreAux,
@@ -25,9 +28,9 @@ def Ingreso():
                             "precio": precioAux,
                             "stock": stockAux
                         }
-                    else: print("La categoria debe ser una de las especificadas")
+                    else: print("ERROR: La categoria debe ser una de las especificadas")
                 else:
-                    print("El stock y precio deben ser mayor a 0")
+                    print("ERROR: El stock y precio deben ser mayor a 0")
             print("")
         except ValueError:
             print("ERROR: El precio debe ser un numero, el stock debe ser un numero entero")
@@ -55,8 +58,11 @@ def verProductos():
                     suma = suma + (producto["precio"] * producto["stock"])
                     contadorHombres=contadorHombres + 1
                     print("----------")
-            print(f"Valor total de inventario: {suma}")
-            print(f"Cantidad: {contadorHombres}")
+            if contadorHombres>0:
+                print(f"Valor total de inventario: Q{suma}")
+                print(f"Cantidad: {contadorHombres}")
+            else:
+                print("No se ha encontrado ningun producto en esta categoria")
         case "2":
             suma=0
             contadorMujeres=0
@@ -69,10 +75,13 @@ def verProductos():
                     print(f"Talla: {producto['talla']}")
                     print(f"Precio: {producto['precio']}")
                     print(f"Stock: {producto['stock']}")
-                    print(f"Valor total de inventario: {suma}")
+                    suma=suma + (producto["precio"] * producto["stock"])
                     print("----------")
-            print(f"Valor total de inventario: {suma}")
-            print(f"Cantidad: {contadorMujeres}")
+            if contadorMujeres>0:
+                print(f"Valor total de inventario: Q{suma}")
+                print(f"Cantidad: {contadorMujeres}")
+            else:
+                print("No se ha encontrado ningun producto en esta categoria")
 
         case "3":
             suma=0
@@ -88,8 +97,11 @@ def verProductos():
                     print(f"Stock: {producto['stock']}")
                     suma = suma + (producto["precio"] * producto["stock"])
                     print("----------")
-            print(f"Valor total de inventario: {suma}")
-            print(f"Cantidad: {contadorNiños}")
+            if contadorNiños>0:
+                print(f"Valor total de inventario: Q{suma}")
+                print(f"Cantidad: {contadorNiños}")
+            else:
+                print("No se ha encontrado ningun producto en esta categoria")
         case "4":
             suma=0
             contadorOtros=0
@@ -104,8 +116,11 @@ def verProductos():
                     print(f"Stock: {producto['stock']}")
                     suma = suma + (producto["precio"] * producto["stock"])
                     print("----------")
-            print(f"Valor total de inventario: {suma}")
-            print(f"Cantidad: {contadorOtros}")
+            if contadorOtros>0:
+                print(f"Valor total de inventario: Q{suma}")
+                print(f"Cantidad: {contadorOtros}")
+            else:
+                print("No se ha encontrado ningun producto en esta categoria")
         case "5":
             suma=0
             contador=0
@@ -119,10 +134,12 @@ def verProductos():
                 print(f"Precio: {producto['precio']}")
                 print(f"Stock: {producto['stock']}")
                 suma = suma + (producto["precio"] * producto["stock"])
-                print(f"Valor total de inventario: {suma}")
                 print("----------")
-            print(f"Valor total de inventario: {suma}")
-            print(f"Cantidad: {contador}")
+            if contador>0:
+                print(f"Valor total de inventario: Q{suma}")
+                print(f"Cantidad: {contador}")
+            else:
+                print("No se ha encontrado ningun producto")
         case _:
             print("Opción no encontrada")
 
