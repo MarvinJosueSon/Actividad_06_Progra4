@@ -6,10 +6,10 @@ def Ingreso():
     i=1
     while i <= cantidad:
         try:
-            print(f"Ingreso producto #{i+1}")
+            print(f"Ingreso producto #{i}")
             auxCodigo = input("Ingrese el codigo del producto: ")
             if auxCodigo in productos:
-                print("El codigo del producto ya existe")
+                print("ERROR: El codigo del producto ya existe")
             else:
                 nombreAux=input("Ingrese el nombre del producto: ")
 
@@ -146,7 +146,6 @@ def verProductos():
 def buscarProductos():
     buscar=input("Ingrese el codigo del producto a buscar: ")
     if buscar in productos:
-        print(productos[buscar])
         print(f'categoría: {productos[buscar]["categoria"]}')
         print(f'nombre: {productos[buscar]["nombre"]}')
         print(f'talla: {productos[buscar]["talla"]}')
